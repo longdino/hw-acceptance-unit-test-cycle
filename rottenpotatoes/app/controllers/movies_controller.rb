@@ -7,7 +7,41 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    @all_ratings = Movie.all_ratings
+    
+    if params[:ratings]
+      @ratings_to_show = params[:ratings]
+    elsif session[:ratings]
+      @ratings_to_show = session[:ratings]
+    else
+      @ratings_to_show = Hash[@all_ratings.map {|key| [key, 1]}]
+    end
+   
+    if params[:order]
+      sorted = params[:order]
+    elsif session[:order]
+      sorted = session[:order]
+    end
+    
+    if sorted
+      if sorted == 'title'
+        ordered, @title_header = {:title => :asc}, "hilite bg-warning"
+      elsif sorted == 'release_date'
+        ordered, @release_date_header = {:release_date => :asc}, "hilite bg-warning"
+      end
+    end
+    
+    if (params[:ratings] == nil && session[:order] != nil) ||
+      (params[:order] == nil && session[:order] != nil)
+      flash.keep
+      redirect_to movies_path :order => sorted, :ratings => @ratings_to_show and return
+    end
+    
+    @movies = Movie.where(rating: @ratings_to_show.keys).order(ordered)
+    
+    session[:order] = sorted
+    session[:ratings] = @ratings_to_show
+
   end
 
   def new
