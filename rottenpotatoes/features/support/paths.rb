@@ -20,6 +20,7 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
+    when /^the new page/ then new_movie_path
     
     when /^the edit page for "(.*)"$/ then edit_movie_path(Movie.where(title: $1).first)
       

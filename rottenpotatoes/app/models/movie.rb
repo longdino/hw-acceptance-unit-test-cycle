@@ -9,4 +9,7 @@ class Movie < ActiveRecord::Base
             Movie.all
         end   
     end
+    def self.find_same_director(director)
+        Movie.where(director: director)
+    end
 end
