@@ -1,17 +1,6 @@
-..F.......
+............
 
-Failures:
+Finished in 0.08517 seconds (files took 1.35 seconds to load)
+12 examples, 0 failures
 
-  1) MoviesController Index Movies should show sorted movies
-     Failure/Error: expect(response).to redirect_to movies_path
-       Expected response to be a <redirect>, but was <200>
-     # ./spec/controllers/movies_controller_spec.rb:35:in `block (3 levels) in <top (required)>'
-
-Finished in 0.08741 seconds (files took 1.35 seconds to load)
-10 examples, 1 failure
-
-Failed examples:
-
-rspec ./spec/controllers/movies_controller_spec.rb:33 # MoviesController Index Movies should show sorted movies
-
-Coverage report generated for RSpec to /home/ec2-user/environment/hw-acceptance-unit-test-cycle/rottenpotatoes/coverage. 56 / 67 LOC (83.58%) covered.
+Coverage report generated for RSpec to /home/ec2-user/environment/hw-acceptance-unit-test-cycle/rottenpotatoes/coverage. 58 / 67 LOC (86.57%) covered.

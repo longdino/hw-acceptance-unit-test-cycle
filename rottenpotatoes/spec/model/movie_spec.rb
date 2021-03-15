@@ -10,4 +10,11 @@ RSpec.describe Movie, type: :model do
             expect(Movie.find_same_director('director1')).to eq [movie1, movie3]
         end
     end
+    
+    describe 'All Ratings' do 
+        it 'should show all ratings' do
+            expect(Movie.all_ratings).to eq ['G', 'PG', 'PG-13', 'R', 'NC-17']
+        end
+    end
+    
 end

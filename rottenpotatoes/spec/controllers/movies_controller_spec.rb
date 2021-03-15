@@ -17,6 +17,7 @@ if RUBY_VERSION>='2.6.0'
 end
 
 RSpec.describe MoviesController, type: :controller do
+    
     describe 'Show Movies' do
         it 'should show the movies' do
             movie1 = Movie.create!(title: 'title1')
@@ -30,9 +31,17 @@ RSpec.describe MoviesController, type: :controller do
             get :index
             expect(assigns(:movies).length).to eq(Movie.all.count)
         end
-        it 'should show sorted movies' do
+        
+        it 'should highlight title when title clicked' do
             get :index, { order: 'title' }
-            expect(response).to redirect_to movies_path
+            expect(assigns(:title_header)).to eq('hilite bg-warning')
+            expect(assigns(:release_date_header)).to eq(nil)
+        end
+        
+        it 'should highlight release date when release date clicked' do
+            get :index, { order: 'release_date' }
+            expect(assigns(:release_date_header)).to eq('hilite bg-warning')
+            expect(assigns(:title_header)).to eq(nil)
         end
     end
     
